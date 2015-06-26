@@ -1,0 +1,26 @@
+{
+  "app_name": "docker-codebox",
+  "services": [
+    {
+      "service_name": "codebox-service",
+      "components": [
+        {
+          "component_name": "codebox-component",
+          "image": "javierprovecho/docker-codebox:latest",
+          "entrypoint": "/usr/bin/codebox",
+          "args": [
+            "run", "-p", "1337", "-u", "$username:$pass"
+          ],
+          "ports": [1337],
+          "domains": {
+            "docker-codebox-$username.gigantic.io": 1337
+          },
+          "scaling_policy": {
+            "min": 1,
+            "max" : 1
+          }
+        }
+      ]
+    }
+  ]
+}
